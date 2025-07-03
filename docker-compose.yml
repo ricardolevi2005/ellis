@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  # Este serviço executa a aplicação FastAPI.
+  # O código é copiado para dentro da imagem no momento do 'build'.
+  # O banco de dados (SQLite) será criado dentro do container e será perdido
+  # se o container for removido (efêmero).
+  api:
+    build: .
+    container_name: fast_api_escola
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    # O comando não usa mais '--reload', pois sem o volume, as alterações
+    # no código local não são refletidas no container.
+
